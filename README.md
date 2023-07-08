@@ -48,3 +48,64 @@ Finally, execute the project with the command:
 ```bash
 npm start
 ```
+
+## Concepts
+
+### Components and @Input()
+
+Components are the main building blocks for Angular applications. Each component consists of:
+
+- An HTML template that declares what renders on the page
+- A TypeScript class that defines behavior
+- A CSS selector that defines how the component is used in a template
+- Optionally, CSS styles applied to the template
+
+To create a new component, we use the following command (where `post` is the name of our component):
+
+```bash
+ng generate component post
+```
+
+It automatically creates the files and add a reference in `app.module.ts` so that we can use the `app-post` tag (defined in our post component) anywhere in our app, like we do in `app.component.html`
+
+```typescript
+/* src/app/post/post.component.ts */
+import { Component, Input } from '@angular/core';
+@Component({
+  selector: 'app-post',
+  templateUrl: './post.component.html'
+})
+export class PostComponent {
+  @Input() author?: string;
+  @Input() content?: string;
+}
+```
+
+```html
+<!-- src/app/post/post.component.html -->
+<div>
+  <strong>{{author}}</strong>
+  <p>{{content}}</p>
+</div>
+```
+
+```typescript
+/* src/app/app.module.ts */
+import { PostComponent } from './post/post.component';
+@NgModule({
+  declarations: [
+    AppComponent,
+    PostComponent
+  ],
+  /*...*/
+})
+export class AppModule { }
+```
+
+```html
+<!-- src/app/app.component.html -->
+<div>
+  <app-post author="Me" content="Whatever I want to say" />
+  <app-post author="You" content="Whatever you want to say" />
+</div>
+```
