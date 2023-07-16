@@ -143,3 +143,27 @@ export class AppComponent {
 ```
 
 If we use other components in our `app.component.html` file, those components won't see the `danger` class, and their `danger` classes won't be affected by the parent's one.
+
+We can also move and/or rename our `src/styles.css` file, but we must also configure `angular.json` to point to that file.
+
+#### Importing Fonts from CDNs
+
+There are 3 alternatives: using `link` tags in our `index.html` file, using a `@import` rule in our `styles.css` file (or `global.css` if you renamed it), or using a third party loader like [`webfontloader`](https://www.npmjs.com/package/webfontloader). Below, I list both the link and import options, but according to [this answer on SO](https://stackoverflow.com/questions/12316501/including-google-fonts-link-or-import), 90% of the time we should use the link version.
+
+```html
+<!-- src/index.html: link version -->
+<head>
+  ...
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  ...
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+  ...
+</head>
+...
+```
+
+```css
+/* src/global.css: import version */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+```
