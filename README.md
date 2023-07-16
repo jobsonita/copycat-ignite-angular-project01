@@ -109,3 +109,37 @@ export class AppModule { }
   <app-post author="You" content="Whatever you want to say" />
 </div>
 ```
+
+### Scoped CSS
+
+Angular already comes with scoped CSS out-of-the-box. Any rules defined in the component's css file will only apply to the component. But we can also define global rules in the `src/styles.css` file.
+
+```css
+/* src/app/app.component.css */
+.danger {
+  background: red;
+}
+```
+
+```html
+<!-- src/app/app.component.html -->
+<div class="danger">
+  <p>This paragraph has a red background</p>
+</div>
+```
+
+```ts
+/* src/app/app.component.ts */
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  title = 'project01';
+}
+```
+
+If we use other components in our `app.component.html` file, those components won't see the `danger` class, and their `danger` classes won't be affected by the parent's one.
