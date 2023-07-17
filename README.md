@@ -167,3 +167,48 @@ There are 3 alternatives: using `link` tags in our `index.html` file, using a `@
 /* src/global.css: import version */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 ```
+
+### Icon Libraries
+
+In this project, we'll use the [Ng Icons](https://github.com/ng-icons/ng-icons) library as a substitute to the `phosphor-react` library used in Rocketseat's Ignite React course. We'll start with only the [Feather Icons](https://feathericons.com/) set of icons, but will add other sets as necessary.
+
+Example of installation and usage:
+
+```bash
+npm install @ng-icons/core @ng-icons/feather-icons @ng-icons/heroicons
+```
+
+```ts
+/* app.module.ts */
+import { NgIconsModule } from '@ng-icons/core';
+import { featherAirplay } from '@ng-icons/feather-icons';
+import { heroUsers } from '@ng-icons/heroicons/outline';
+
+@NgModule({
+  imports: [
+    BrowserModule,
+    NgIconsModule.withIcons({ featherAirplay, heroUsers }),
+  ],
+})
+export class AppModule {}
+```
+
+```html
+<!-- xxx.component.html -->
+<ng-icon name="featherAirplay" size="20" color="red" strokeWidth="2"></ng-icon>
+```
+
+Also, it lets us use it with standalone components (better than loading and providing the whole library globally), but we won't be using them in this project:
+
+```ts
+import { NgIconComponent, provideIcons } from '@ng-icons/core';
+import { featherAirplay } from '@ng-icons/feather-icons';
+import { heroUsers } from '@ng-icons/heroicons/outline';
+
+@Component({
+  standalone: true,
+  imports: [NgIconComponent],
+  providers: [provideIcons({ featherAirplay, heroUsers })],
+})
+export class AppComponent {}
+```
