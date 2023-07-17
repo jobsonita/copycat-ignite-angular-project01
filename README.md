@@ -168,6 +168,56 @@ There are 3 alternatives: using `link` tags in our `index.html` file, using a `@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 ```
 
+#### Component styling based on context
+
+We can use a combination of `:host`, `:host(selectors)`, `:host-context` and `:host-context(selectors)` [special selectors](https://angular.io/guide/component-styles#special-selectors) to style a component based on its ancestors or siblings.
+
+For example, to style only the posts which are siblings of other posts, we can use:
+
+```css
+:host-context + :host {
+  .post {
+    margin-top: 2rem;
+  }
+}
+```
+
+However, such usage isn't recommended. For alternatives, I'll mention 2 of them:
+
+- Allowing for the parent to pass classes down to the component:
+
+```css
+/* child.component.css */
+:host(.sibling) {
+  .post {
+    margin-top: 2rem;
+  }
+}
+```
+
+```html
+<!-- parent.component.html -->
+<app-child />
+<app-child class="sibling" />
+```
+
+- Styling the children from the parent itself:
+
+```html
+<!-- parent.component.html -->
+<app-child />
+<app-child />
+```
+
+```css
+/* parent.component.css */
+app-child + app-child {
+  .post {
+    margin-top: 2rem;
+  }
+}
+```
+
 ### Icon Libraries
 
 In this project, we'll use the [Ng Icons](https://github.com/ng-icons/ng-icons) library as a substitute to the `phosphor-react` library used in Rocketseat's Ignite React course. We'll start with only the [Feather Icons](https://feathericons.com/) set of icons, but will add other sets as necessary.

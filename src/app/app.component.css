@@ -8,3 +8,9 @@
   gap: 2rem;
   align-items: flex-start;
 }
+
+app-post + app-post {
+  .post {
+    margin-top: 2rem;
+  }
+}
