@@ -8,6 +8,7 @@ import { CommentComponent } from './comment/comment.component';
 import { HeaderComponent } from './header/header.component';
 import { PostComponent } from './post/post.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { AvatarComponent } from './avatar/avatar.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     PostComponent,
     HeaderComponent,
     SidebarComponent,
-    CommentComponent
+    CommentComponent,
+    AvatarComponent
   ],
   imports: [
     BrowserModule,
