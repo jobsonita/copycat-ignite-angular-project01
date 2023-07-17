@@ -9,6 +9,12 @@
   align-items: flex-start;
 }
 
+@media (max-width: 768px) {
+    .wrapper {
+        grid-template-columns: 1fr;
+    }
+}
+
 app-post + app-post {
   .post {
     margin-top: 2rem;
